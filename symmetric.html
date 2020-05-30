@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetric Crypto</title>
+    <style>
+        div {
+            margin: 5px;
+        }
+
+        .grid {
+            display: flex;
+        }
+
+        .gridCol {
+            border-top: none;
+            border-style: solid;
+            padding: 10px;
+        }
+
+        button,
+        input,
+        textarea {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Symmetric Crypto</h2>
+    </div>
+
+    <div class="grid">
+        <div class="gridCol">
+            <div>
+                <span>Symmetric key : </span>
+            </div>
+            <div>
+                <input id="symmetricKey1" type="password">
+            </div>
+        </div>
+        <div class="gridCol">
+            <div>
+                <span>Original : </span>
+            </div>
+            <div>
+                <textarea id="original2"></textarea>
+            </div>
+            <div>
+                <button onclick="SymmetricEncrypt()">Symmetric Encrypt</button>
+            </div>
+            <div>
+                <span>Encrypted : </span>
+            </div>
+            <div>
+                <textarea id="encrypted2"></textarea>
+            </div>
+        </div>
+
+        <div class="gridCol">
+            <div>
+                <span>Encrypted : </span>
+            </div>
+            <div>
+                <textarea id="encrypted3"></textarea>
+            </div>
+            <div>
+                <button onclick="SymmetricDecrypt()">Symmetric Decrypt</button>
+            </div>
+            <div>
+                <span>Decrypted : </span>
+            </div>
+            <div>
+                <textarea id="decrypted3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="Symmetric.js"></script>
+    </div>
+</body>
