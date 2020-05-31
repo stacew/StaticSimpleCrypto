@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Crypto</title>
+    <style>
+        div {
+            margin: 5px;
+        }
+
+        .grid {
+            display: flex;
+        }
+
+        .gridCol {
+            border-top: none;
+            border-style: solid;
+            padding: 10px;
+        }
+
+        button,
+        input,
+        textarea {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+</head>
+
+<div>
+    <div>
+        <h2>RSA Crypto</h2>
+    </div>
+
+    <div class="grid">
+        <div class="gridCol">
+            <div>
+                <button onclick="GenerateKey()">Generate Key</button>
+            </div>
+            <div>
+                <span>Public Key : </span>
+            </div>
+            <div>
+                <input id="publicKey1">
+            </div>
+            <div>
+                <span>Private key : </span>
+            </div>
+            <div>
+                <input id="privateKey1">
+            </div>
+        </div>
+
+        <div class="gridCol">
+            <div>
+                <span>Public Key : </span>
+            </div>
+            <div>
+                <input id="publicKey2">
+            </div>
+            <div>
+                <span>Original : </span>
+            </div>
+            <div>
+                <textarea id="original2"></textarea>
+            </div>
+            <div>
+                <button onclick="PublicEncrypt()">Public Encrypt</button>
+            </div>
+            <div>
+                <span>Encrypted : </span>
+            </div>
+            <div>
+                <textarea id="encrypted2"></textarea>
+            </div>
+        </div>
+
+        <div class="gridCol">
+            <div>
+                <span>Private key : </span>
+            </div>
+            <div>
+                <input id="privateKey3">
+            </div>
+            <div>
+                <span>Encrypted : </span>
+            </div>
+            <div>
+                <textarea id="encrypted3"></textarea>
+            </div>
+            <div>
+                <button onclick="PrivateDecrypt()">Private Decrypt</button>
+            </div>
+            <div>
+                <span>Decrypted : </span>
+            </div>
+            <div>
+                <textarea id="decrypted3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="rsa.js"></script>
+</div>
