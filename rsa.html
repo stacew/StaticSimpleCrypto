@@ -103,5 +103,97 @@
         </div>
     </div>
 
-    <script src="rsa.js"></script>
+    <script>
+        ////////////////////////////////////////////0
+        function isPrime(num) {
+            for (let i = 2; i < num; i++) {
+                if (num % i == 0)
+                    return false;
+            }
+            return true;
+        }
+        function gcd(min, max) {
+            while (min != 0) {
+                let temp = max % min;
+                max = min;
+                min = temp;
+            }
+            return max;
+        };
+        function crypt(mc, key, n) {
+            let result = 1;
+            for (let i = 0; i < key; i++) {
+                result *= mc;
+                result %= n;
+            }
+            return result;
+        }
+        ////////////////////////////////////////////1
+        const privateKey1 = document.getElementById("privateKey1");
+        const publicKey1 = document.getElementById("publicKey1");
+        function GenerateKey() {
+            const complex = 300;
+            let p = 0;
+            do {
+                p = complex + Math.floor(Math.random() * complex);
+            } while (isPrime(p) == false);
+            let q = 0;
+            do {
+                q = complex + Math.floor(Math.random() * complex);
+            } while (isPrime(q) == false);
+            let n = p * q;
+            let eulerPi = (p - 1) * (q - 1);
+            let publicKey = makePublicKey(eulerPi);
+            let privateKey = makePrivateKey(publicKey, eulerPi);
+            publicKey1.value = String(n).length + String(n) + String(publicKey);
+            privateKey1.value = String(n).length + String(n) + String(privateKey);
+            publicKey2.value = publicKey1.value;
+            privateKey3.value = privateKey1.value;
+        }
+        function makePublicKey(eulerPi) {
+            let publicKey = 2;
+            while (gcd(publicKey, eulerPi) != 1) {
+                publicKey++;
+            }
+            return publicKey;
+        }
+        function makePrivateKey(publicKey, eulerPi) {
+            let privateKey = 2;
+            while ((privateKey * publicKey) % eulerPi != 1) {
+                privateKey++;
+            }
+            return privateKey;
+        }
+        ////////////////////////////////////////////2
+        const publicKey2 = document.getElementById("publicKey2");
+        const original2 = document.getElementById("original2");
+        const encrypted2 = document.getElementById("encrypted2");
+        function PublicEncrypt() {
+            let nLen = Number(publicKey2.value[0]);
+            let n = String(publicKey2.value).substring(1, nLen + 1);
+            let publicKey = String(publicKey2.value).substring(nLen + 1, publicKey2.length);
+            encrypted2.value = "";
+            for (let i = 0; i < original2.value.length; i++) {
+                encrypted2.value = encrypted2.value + crypt(original2.value[i].charCodeAt(0), publicKey, n) + '.';
+            }
+            encrypted3.value = encrypted2.value;
+        }
+        ////////////////////////////////////////////3
+        const privateKey3 = document.getElementById("privateKey3");
+        const encrypted3 = document.getElementById("encrypted3");
+        const decrypted3 = document.getElementById("decrypted3");
+        function PrivateDecrypt() {
+            let nLen = Number(privateKey3.value[0]);
+            let n = String(privateKey3.value).substring(1, nLen + 1);
+            let privateKey = String(privateKey3.value).substring(nLen + 1, privateKey3.length);
+            decrypted3.value = "";
+            for (let i = 0; i < encrypted3.value.length; i++) {
+                let nStartIndex = i;
+                let nFindIndex = encrypted3.value.indexOf(".", nStartIndex);
+                let num = encrypted3.value.substring(nStartIndex, nFindIndex);
+                decrypted3.value = decrypted3.value + String.fromCharCode(crypt(num, privateKey, n));
+                i = nFindIndex;
+            }
+        }
+    </script>
 </div>
