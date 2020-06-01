@@ -112,6 +112,13 @@
             }
             return true;
         }
+        function getPrime(complex) {
+            let prime = 0;
+            do {
+                prime = complex + Math.floor(Math.random() * complex);
+            } while (isPrime(prime) == false);
+            return prime;
+        }
         function gcd(min, max) {
             while (min != 0) {
                 let temp = max % min;
@@ -133,21 +140,15 @@
         const publicKey1 = document.getElementById("publicKey1");
         function GenerateKey() {
             const complex = 300;
-            let p = 0;
-            do {
-                p = complex + Math.floor(Math.random() * complex);
-            } while (isPrime(p) == false);
-            let q = 0;
-            do {
-                q = complex + Math.floor(Math.random() * complex);
-            } while (isPrime(q) == false);
+            let p = getPrime(complex);
+            let q = getPrime(complex);
             let n = p * q;
             let eulerPi = (p - 1) * (q - 1);
             let publicKey = makePublicKey(eulerPi);
             let privateKey = makePrivateKey(publicKey, eulerPi);
             publicKey1.value = String(n).length + String(n) + String(publicKey);
-            privateKey1.value = String(n).length + String(n) + String(privateKey);
             publicKey2.value = publicKey1.value;
+            privateKey1.value = String(n).length + String(n) + String(privateKey);
             privateKey3.value = privateKey1.value;
         }
         function makePublicKey(eulerPi) {
