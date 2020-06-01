@@ -141,7 +141,8 @@
         function GenerateKey() {
             const complex = 300;
             let p = getPrime(complex);
-            let q = getPrime(complex);
+            let q = p;
+            while (q == p) { q = getPrime(complex); }
             let n = p * q;
             let eulerPi = (p - 1) * (q - 1);
             let publicKey = makePublicKey(eulerPi);
